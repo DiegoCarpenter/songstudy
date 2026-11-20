@@ -1,0 +1,731 @@
+{
+  "id": "squared-residuals-down-e49c19",
+  "createdAt": "2026-11-20T00:36:09.403Z",
+  "title": "Squared Residuals Down",
+  "vibeLabel": "upbeat indie rock, post-punk revival, ~148 BPM, C# minor, jangly overdriven electric guitars, pulsing eighth-note bass, urgent, yearning male lead vocals with a big shouted chorus and layered backing vocals",
+  "lengthSec": 60,
+  "descriptors": {
+    "genre": "upbeat indie rock, post-punk revival",
+    "bpm": 148,
+    "key": "C# minor",
+    "mood": [
+      "driving",
+      "anxious",
+      "energetic",
+      "anthemic"
+    ],
+    "instruments": [
+      "jangly overdriven electric guitars",
+      "pulsing eighth-note bass",
+      "punchy live drums",
+      "bright synth layer"
+    ],
+    "vocals": "urgent, yearning male lead vocals with a big shouted chorus and layered backing vocals"
+  },
+  "sections": [
+    {
+      "name": "Verse 1",
+      "lines": [
+        "Slope is covariance over variance",
+        "Intercept is y bar minus slope times x bar",
+        "The line always runs through x bar, y bar"
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        "Minimize the sum of squared residuals",
+        "Pick beta zero hat, beta one hat",
+        "Smallest squares is what OLS does",
+        "Smallest squares, and that is that"
+      ]
+    },
+    {
+      "name": "Verse 2",
+      "lines": [
+        "Residuals sum to zero, uncorrelated with x",
+        "R squared is explained over total sum of squares",
+        "It sits between zero and one, fit not causality",
+        "Zero conditional mean keeps beta unbiased",
+        "If it fails, omitted variable bias"
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        "Minimize the sum of squared residuals",
+        "Pick beta zero hat, beta one hat",
+        "Smallest squares is what OLS does",
+        "Smallest squares, and that is that"
+      ]
+    },
+    {
+      "name": "Bridge",
+      "lines": [
+        "Constant variance of u is homoskedasticity",
+        "Needed for standard errors, not unbiasedness"
+      ]
+    }
+  ],
+  "factMap": [
+    {
+      "fact": "OLS chooses beta_0 hat and beta_1 hat to minimize the sum of squared residuals.",
+      "lyricLine": "Minimize the sum of squared residuals"
+    },
+    {
+      "fact": "The slope estimate is beta_1 hat = Cov(x, y) / Var(x).",
+      "lyricLine": "Slope is covariance over variance"
+    },
+    {
+      "fact": "The intercept estimate is beta_0 hat = y bar - beta_1 hat * x bar.",
+      "lyricLine": "Intercept is y bar minus slope times x bar"
+    },
+    {
+      "fact": "The OLS regression line always passes through the point (x bar, y bar).",
+      "lyricLine": "The line always runs through x bar, y bar"
+    },
+    {
+      "fact": "Residuals sum to zero and are uncorrelated with x.",
+      "lyricLine": "Residuals sum to zero, uncorrelated with x"
+    },
+    {
+      "fact": "R-squared = explained sum of squares / total sum of squares.",
+      "lyricLine": "R squared is explained over total sum of squares"
+    },
+    {
+      "fact": "R-squared is between 0 and 1 and measures fit, not causality.",
+      "lyricLine": "It sits between zero and one, fit not causality"
+    },
+    {
+      "fact": "Zero conditional mean, E[u | x] = 0 (exogeneity), is the key assumption for unbiasedness.",
+      "lyricLine": "Zero conditional mean keeps beta unbiased"
+    },
+    {
+      "fact": "If zero conditional mean fails, we have omitted variable bias.",
+      "lyricLine": "If it fails, omitted variable bias"
+    },
+    {
+      "fact": "Homoskedasticity means Var(u | x) is constant.",
+      "lyricLine": "Constant variance of u is homoskedasticity"
+    },
+    {
+      "fact": "Homoskedasticity is needed for the usual standard errors, not for unbiasedness.",
+      "lyricLine": "Needed for standard errors, not unbiasedness"
+    }
+  ],
+  "timestamps": [
+    {
+      "word": "Slope",
+      "startMs": 180,
+      "endMs": 400
+    },
+    {
+      "word": "is",
+      "startMs": 440,
+      "endMs": 560
+    },
+    {
+      "word": "covariance",
+      "startMs": 620,
+      "endMs": 1600
+    },
+    {
+      "word": "over",
+      "startMs": 2100,
+      "endMs": 2320
+    },
+    {
+      "word": "variance",
+      "startMs": 2440,
+      "endMs": 3040
+    },
+    {
+      "word": "Intercept",
+      "startMs": 3360,
+      "endMs": 3840
+    },
+    {
+      "word": "is",
+      "startMs": 3900,
+      "endMs": 4019
+    },
+    {
+      "word": "y",
+      "startMs": 4040,
+      "endMs": 4059
+    },
+    {
+      "word": "bar",
+      "startMs": 4460,
+      "endMs": 4760
+    },
+    {
+      "word": "minus",
+      "startMs": 4900,
+      "endMs": 5220
+    },
+    {
+      "word": "slope",
+      "startMs": 5260,
+      "endMs": 5460
+    },
+    {
+      "word": "times",
+      "startMs": 5500,
+      "endMs": 5720
+    },
+    {
+      "word": "x",
+      "startMs": 6000,
+      "endMs": 6040
+    },
+    {
+      "word": "bar",
+      "startMs": 6140,
+      "endMs": 6440
+    },
+    {
+      "word": "The",
+      "startMs": 6720,
+      "endMs": 6880
+    },
+    {
+      "word": "line",
+      "startMs": 6940,
+      "endMs": 7140
+    },
+    {
+      "word": "always",
+      "startMs": 7220,
+      "endMs": 7660
+    },
+    {
+      "word": "runs",
+      "startMs": 7720,
+      "endMs": 7920
+    },
+    {
+      "word": "through",
+      "startMs": 7940,
+      "endMs": 8119
+    },
+    {
+      "word": "x",
+      "startMs": 8420,
+      "endMs": 8520
+    },
+    {
+      "word": "bar,",
+      "startMs": 8580,
+      "endMs": 8840
+    },
+    {
+      "word": "y",
+      "startMs": 8940,
+      "endMs": 9220
+    },
+    {
+      "word": "bar",
+      "startMs": 9360,
+      "endMs": 9700
+    },
+    {
+      "word": "Minimize",
+      "startMs": 10180,
+      "endMs": 10980
+    },
+    {
+      "word": "the",
+      "startMs": 11020,
+      "endMs": 11160
+    },
+    {
+      "word": "sum",
+      "startMs": 11240,
+      "endMs": 11600
+    },
+    {
+      "word": "of",
+      "startMs": 11660,
+      "endMs": 11720
+    },
+    {
+      "word": "squared",
+      "startMs": 11760,
+      "endMs": 12000
+    },
+    {
+      "word": "residuals",
+      "startMs": 12060,
+      "endMs": 13040
+    },
+    {
+      "word": "Pick",
+      "startMs": 13480,
+      "endMs": 13840
+    },
+    {
+      "word": "beta",
+      "startMs": 13880,
+      "endMs": 14200
+    },
+    {
+      "word": "zero",
+      "startMs": 14280,
+      "endMs": 14640
+    },
+    {
+      "word": "hat,",
+      "startMs": 14700,
+      "endMs": 14960
+    },
+    {
+      "word": "beta",
+      "startMs": 15120,
+      "endMs": 15440
+    },
+    {
+      "word": "one",
+      "startMs": 15540,
+      "endMs": 15860
+    },
+    {
+      "word": "hat",
+      "startMs": 15940,
+      "endMs": 16239
+    },
+    {
+      "word": "Smallest",
+      "startMs": 16660,
+      "endMs": 17080
+    },
+    {
+      "word": "squares",
+      "startMs": 17100,
+      "endMs": 17540
+    },
+    {
+      "word": "is",
+      "startMs": 17600,
+      "endMs": 17720
+    },
+    {
+      "word": "what",
+      "startMs": 17780,
+      "endMs": 17960
+    },
+    {
+      "word": "OLS",
+      "startMs": 18040,
+      "endMs": 19060
+    },
+    {
+      "word": "does",
+      "startMs": 19160,
+      "endMs": 19580
+    },
+    {
+      "word": "Smallest",
+      "startMs": 19940,
+      "endMs": 20320
+    },
+    {
+      "word": "squares,",
+      "startMs": 20360,
+      "endMs": 20980
+    },
+    {
+      "word": "and",
+      "startMs": 21040,
+      "endMs": 21180
+    },
+    {
+      "word": "that",
+      "startMs": 21260,
+      "endMs": 21640
+    },
+    {
+      "word": "is",
+      "startMs": 21740,
+      "endMs": 21960
+    },
+    {
+      "word": "that",
+      "startMs": 22060,
+      "endMs": 22400
+    },
+    {
+      "word": "Residuals",
+      "startMs": 24300,
+      "endMs": 25060
+    },
+    {
+      "word": "sum",
+      "startMs": 25100,
+      "endMs": 25260
+    },
+    {
+      "word": "to",
+      "startMs": 25320,
+      "endMs": 25440
+    },
+    {
+      "word": "zero,",
+      "startMs": 25520,
+      "endMs": 26060
+    },
+    {
+      "word": "uncorrelated",
+      "startMs": 26360,
+      "endMs": 27300
+    },
+    {
+      "word": "with",
+      "startMs": 27360,
+      "endMs": 27540
+    },
+    {
+      "word": "x",
+      "startMs": 27880,
+      "endMs": 27900
+    },
+    {
+      "word": "R",
+      "startMs": 28300,
+      "endMs": 28340
+    },
+    {
+      "word": "squared",
+      "startMs": 28500,
+      "endMs": 28800
+    },
+    {
+      "word": "is",
+      "startMs": 28860,
+      "endMs": 28960
+    },
+    {
+      "word": "explained",
+      "startMs": 29020,
+      "endMs": 29580
+    },
+    {
+      "word": "over",
+      "startMs": 29640,
+      "endMs": 29760
+    },
+    {
+      "word": "total",
+      "startMs": 29800,
+      "endMs": 30120
+    },
+    {
+      "word": "sum",
+      "startMs": 30200,
+      "endMs": 30400
+    },
+    {
+      "word": "of",
+      "startMs": 30420,
+      "endMs": 30500
+    },
+    {
+      "word": "squares",
+      "startMs": 30540,
+      "endMs": 30820
+    },
+    {
+      "word": "It",
+      "startMs": 30860,
+      "endMs": 30940
+    },
+    {
+      "word": "sits",
+      "startMs": 31000,
+      "endMs": 31200
+    },
+    {
+      "word": "between",
+      "startMs": 31240,
+      "endMs": 31760
+    },
+    {
+      "word": "zero",
+      "startMs": 31840,
+      "endMs": 32200
+    },
+    {
+      "word": "and",
+      "startMs": 32259,
+      "endMs": 32360
+    },
+    {
+      "word": "one,",
+      "startMs": 32460,
+      "endMs": 32600
+    },
+    {
+      "word": "fit",
+      "startMs": 32659,
+      "endMs": 32740
+    },
+    {
+      "word": "not",
+      "startMs": 32740,
+      "endMs": 32800
+    },
+    {
+      "word": "causality",
+      "startMs": 32840,
+      "endMs": 33580
+    },
+    {
+      "word": "Zero",
+      "startMs": 33680,
+      "endMs": 34000
+    },
+    {
+      "word": "conditional",
+      "startMs": 34080,
+      "endMs": 34620
+    },
+    {
+      "word": "mean",
+      "startMs": 34680,
+      "endMs": 34820
+    },
+    {
+      "word": "keeps",
+      "startMs": 34880,
+      "endMs": 35080
+    },
+    {
+      "word": "beta",
+      "startMs": 35120,
+      "endMs": 35460
+    },
+    {
+      "word": "unbiased",
+      "startMs": 35580,
+      "endMs": 36340
+    },
+    {
+      "word": "If",
+      "startMs": 36420,
+      "endMs": 36520
+    },
+    {
+      "word": "it",
+      "startMs": 36560,
+      "endMs": 36680
+    },
+    {
+      "word": "fails,",
+      "startMs": 36760,
+      "endMs": 37120
+    },
+    {
+      "word": "omitted",
+      "startMs": 37220,
+      "endMs": 37680
+    },
+    {
+      "word": "variable",
+      "startMs": 37760,
+      "endMs": 38260
+    },
+    {
+      "word": "bias",
+      "startMs": 38380,
+      "endMs": 39160
+    },
+    {
+      "word": "Minimize",
+      "startMs": 40820,
+      "endMs": 41420
+    },
+    {
+      "word": "the",
+      "startMs": 41440,
+      "endMs": 41540
+    },
+    {
+      "word": "sum",
+      "startMs": 41620,
+      "endMs": 42020
+    },
+    {
+      "word": "of",
+      "startMs": 42260,
+      "endMs": 42340
+    },
+    {
+      "word": "squared",
+      "startMs": 42380,
+      "endMs": 42820
+    },
+    {
+      "word": "residuals",
+      "startMs": 42920,
+      "endMs": 44020
+    },
+    {
+      "word": "Pick",
+      "startMs": 44280,
+      "endMs": 44440
+    },
+    {
+      "word": "beta",
+      "startMs": 44500,
+      "endMs": 44820
+    },
+    {
+      "word": "zero",
+      "startMs": 44880,
+      "endMs": 45260
+    },
+    {
+      "word": "hat,",
+      "startMs": 45340,
+      "endMs": 45660
+    },
+    {
+      "word": "beta",
+      "startMs": 46140,
+      "endMs": 46460
+    },
+    {
+      "word": "one",
+      "startMs": 46560,
+      "endMs": 46880
+    },
+    {
+      "word": "hat",
+      "startMs": 46960,
+      "endMs": 47300
+    },
+    {
+      "word": "Smallest",
+      "startMs": 47700,
+      "endMs": 48080
+    },
+    {
+      "word": "squares",
+      "startMs": 48120,
+      "endMs": 48560
+    },
+    {
+      "word": "is",
+      "startMs": 48640,
+      "endMs": 48760
+    },
+    {
+      "word": "what",
+      "startMs": 48800,
+      "endMs": 48980
+    },
+    {
+      "word": "OLS",
+      "startMs": 49020,
+      "endMs": 49700
+    },
+    {
+      "word": "does",
+      "startMs": 49780,
+      "endMs": 50480
+    },
+    {
+      "word": "Smallest",
+      "startMs": 50980,
+      "endMs": 51360
+    },
+    {
+      "word": "squares,",
+      "startMs": 51400,
+      "endMs": 52000
+    },
+    {
+      "word": "and",
+      "startMs": 52060,
+      "endMs": 52200
+    },
+    {
+      "word": "that",
+      "startMs": 52280,
+      "endMs": 52660
+    },
+    {
+      "word": "is",
+      "startMs": 52820,
+      "endMs": 53020
+    },
+    {
+      "word": "that",
+      "startMs": 53080,
+      "endMs": 53740
+    },
+    {
+      "word": "Constant",
+      "startMs": 53860,
+      "endMs": 54260
+    },
+    {
+      "word": "variance",
+      "startMs": 54300,
+      "endMs": 54880
+    },
+    {
+      "word": "of",
+      "startMs": 54980,
+      "endMs": 55080
+    },
+    {
+      "word": "u",
+      "startMs": 55140,
+      "endMs": 55280
+    },
+    {
+      "word": "is",
+      "startMs": 55360,
+      "endMs": 55500
+    },
+    {
+      "word": "homoskedasticity",
+      "startMs": 55520,
+      "endMs": 56880
+    },
+    {
+      "word": "Needed",
+      "startMs": 57360,
+      "endMs": 57700
+    },
+    {
+      "word": "for",
+      "startMs": 57740,
+      "endMs": 57860
+    },
+    {
+      "word": "standard",
+      "startMs": 57920,
+      "endMs": 58380
+    },
+    {
+      "word": "errors,",
+      "startMs": 58440,
+      "endMs": 58700
+    },
+    {
+      "word": "not",
+      "startMs": 58780,
+      "endMs": 58980
+    },
+    {
+      "word": "unbiasedness",
+      "startMs": 59020,
+      "endMs": 59960
+    }
+  ],
+  "styleSource": "descriptors",
+  "model": "music_v2_5",
+  "audioFile": "audio.mp3"
+}

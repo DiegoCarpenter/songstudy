@@ -1,0 +1,564 @@
+{
+  "id": "dual-mandate-flow-7d0242",
+  "createdAt": "2026-11-20T00:41:50.569Z",
+  "title": "Dual Mandate Flow",
+  "vibeLabel": "boom-bap hip-hop with a sung hook, ~92 BPM, A minor, punchy boom-bap drums, sampled piano, clear, confident rap verses and a melodic sung chorus",
+  "lengthSec": 60,
+  "descriptors": {
+    "genre": "boom-bap hip-hop with a sung hook",
+    "bpm": 92,
+    "key": "A minor",
+    "mood": [
+      "confident",
+      "rhythmic",
+      "clever"
+    ],
+    "instruments": [
+      "punchy boom-bap drums",
+      "sampled piano",
+      "deep bass",
+      "scratches"
+    ],
+    "vocals": "clear, confident rap verses and a melodic sung chorus"
+  },
+  "sections": [
+    {
+      "name": "Verse 1",
+      "lines": [
+        "Nineteen thirteen, Federal Reserve Act,",
+        "Board, Reserve Banks, FOMC, that's the pact,",
+        "Seven governors serve fourteen years,",
+        "Can't be ousted, no renewals, that's clear."
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        "Dual mandate, sing it loud,",
+        "Max sustainable employment,",
+        "Price stability, keep it sound."
+      ]
+    },
+    {
+      "name": "Verse 2",
+      "lines": [
+        "Twelve Reserve Banks, no shareholders there,",
+        "FOMC votes twelve, meets eight times a year,",
+        "Lower the target range: expansionary cheer,",
+        "Raise the target range: contractionary, clear."
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        "Dual mandate, sing it loud,",
+        "Max sustainable employment,",
+        "Price stability, keep it sound."
+      ]
+    },
+    {
+      "name": "Outro",
+      "lines": [
+        "Price stability: two percent PCE a year,",
+        "Jobs and prices, keep the mandate near."
+      ]
+    }
+  ],
+  "factMap": [
+    {
+      "fact": "The Fed was created by the Federal Reserve Act of 1913.",
+      "lyricLine": "Nineteen thirteen, Federal Reserve Act,"
+    },
+    {
+      "fact": "The Fed is a system of 3 entities: the Board of Governors, the Reserve Banks, and the FOMC.",
+      "lyricLine": "Board, Reserve Banks, FOMC, that's the pact,"
+    },
+    {
+      "fact": "The Board of Governors has 7 members who serve 14-year terms.",
+      "lyricLine": "Seven governors serve fourteen years,"
+    },
+    {
+      "fact": "Governors cannot be ousted and their terms are not renewable.",
+      "lyricLine": "Can't be ousted, no renewals, that's clear."
+    },
+    {
+      "fact": "The Fed's dual mandate is maximum sustainable employment and price stability.",
+      "lyricLine": "Max sustainable employment,"
+    },
+    {
+      "fact": "There are 12 Reserve Banks, and they have no shareholders.",
+      "lyricLine": "Twelve Reserve Banks, no shareholders there,"
+    },
+    {
+      "fact": "The FOMC has 12 voting members and meets 8 times a year.",
+      "lyricLine": "FOMC votes twelve, meets eight times a year,"
+    },
+    {
+      "fact": "Expansionary policy means lowering the target range.",
+      "lyricLine": "Lower the target range: expansionary cheer,"
+    },
+    {
+      "fact": "Contractionary policy means raising the target range.",
+      "lyricLine": "Raise the target range: contractionary, clear."
+    },
+    {
+      "fact": "Price stability means headline PCE inflation of 2% per year.",
+      "lyricLine": "Price stability: two percent PCE a year,"
+    }
+  ],
+  "timestamps": [
+    {
+      "word": "Nineteen",
+      "startMs": 5280,
+      "endMs": 5700
+    },
+    {
+      "word": "thirteen,",
+      "startMs": 5800,
+      "endMs": 6320
+    },
+    {
+      "word": "Federal",
+      "startMs": 6460,
+      "endMs": 6760
+    },
+    {
+      "word": "Reserve",
+      "startMs": 6820,
+      "endMs": 7280
+    },
+    {
+      "word": "Act,",
+      "startMs": 7340,
+      "endMs": 7500
+    },
+    {
+      "word": "Board,",
+      "startMs": 7580,
+      "endMs": 7780
+    },
+    {
+      "word": "Reserve",
+      "startMs": 7800,
+      "endMs": 8160
+    },
+    {
+      "word": "Banks,",
+      "startMs": 8260,
+      "endMs": 8520
+    },
+    {
+      "word": "FOMC,",
+      "startMs": 8740,
+      "endMs": 9380
+    },
+    {
+      "word": "that's",
+      "startMs": 9460,
+      "endMs": 9660
+    },
+    {
+      "word": "the",
+      "startMs": 9700,
+      "endMs": 9780
+    },
+    {
+      "word": "pact,",
+      "startMs": 9900,
+      "endMs": 10160
+    },
+    {
+      "word": "Seven",
+      "startMs": 10540,
+      "endMs": 10780
+    },
+    {
+      "word": "governors",
+      "startMs": 10880,
+      "endMs": 11400
+    },
+    {
+      "word": "serve",
+      "startMs": 11480,
+      "endMs": 11700
+    },
+    {
+      "word": "fourteen",
+      "startMs": 11800,
+      "endMs": 12280
+    },
+    {
+      "word": "years,",
+      "startMs": 12360,
+      "endMs": 12680
+    },
+    {
+      "word": "Can't",
+      "startMs": 12800,
+      "endMs": 12940
+    },
+    {
+      "word": "be",
+      "startMs": 13020,
+      "endMs": 13100
+    },
+    {
+      "word": "ousted,",
+      "startMs": 13200,
+      "endMs": 13440
+    },
+    {
+      "word": "no",
+      "startMs": 13500,
+      "endMs": 13580
+    },
+    {
+      "word": "renewals,",
+      "startMs": 13660,
+      "endMs": 14060
+    },
+    {
+      "word": "that's",
+      "startMs": 14160,
+      "endMs": 14400
+    },
+    {
+      "word": "clear.",
+      "startMs": 14440,
+      "endMs": 14760
+    },
+    {
+      "word": "Dual",
+      "startMs": 15060,
+      "endMs": 15600
+    },
+    {
+      "word": "mandate,",
+      "startMs": 15700,
+      "endMs": 16239
+    },
+    {
+      "word": "sing",
+      "startMs": 16360,
+      "endMs": 16560
+    },
+    {
+      "word": "it",
+      "startMs": 16620,
+      "endMs": 16760
+    },
+    {
+      "word": "loud,",
+      "startMs": 16840,
+      "endMs": 17340
+    },
+    {
+      "word": "Max",
+      "startMs": 17660,
+      "endMs": 17940
+    },
+    {
+      "word": "sustainable",
+      "startMs": 17960,
+      "endMs": 19260
+    },
+    {
+      "word": "employment,",
+      "startMs": 19380,
+      "endMs": 20080
+    },
+    {
+      "word": "Price",
+      "startMs": 20220,
+      "endMs": 20520
+    },
+    {
+      "word": "stability,",
+      "startMs": 20540,
+      "endMs": 21400
+    },
+    {
+      "word": "keep",
+      "startMs": 21560,
+      "endMs": 21780
+    },
+    {
+      "word": "it",
+      "startMs": 21820,
+      "endMs": 21960
+    },
+    {
+      "word": "sound.",
+      "startMs": 22060,
+      "endMs": 22820
+    },
+    {
+      "word": "Twelve",
+      "startMs": 26140,
+      "endMs": 26360
+    },
+    {
+      "word": "Reserve",
+      "startMs": 26400,
+      "endMs": 26740
+    },
+    {
+      "word": "Banks,",
+      "startMs": 26860,
+      "endMs": 27100
+    },
+    {
+      "word": "no",
+      "startMs": 27200,
+      "endMs": 27320
+    },
+    {
+      "word": "shareholders",
+      "startMs": 27460,
+      "endMs": 28100
+    },
+    {
+      "word": "there,",
+      "startMs": 28160,
+      "endMs": 28360
+    },
+    {
+      "word": "FOMC",
+      "startMs": 28580,
+      "endMs": 29020
+    },
+    {
+      "word": "votes",
+      "startMs": 29120,
+      "endMs": 29360
+    },
+    {
+      "word": "twelve,",
+      "startMs": 29440,
+      "endMs": 29740
+    },
+    {
+      "word": "meets",
+      "startMs": 29820,
+      "endMs": 30040
+    },
+    {
+      "word": "eight",
+      "startMs": 30100,
+      "endMs": 30260
+    },
+    {
+      "word": "times",
+      "startMs": 30340,
+      "endMs": 30600
+    },
+    {
+      "word": "a",
+      "startMs": 30660,
+      "endMs": 30680
+    },
+    {
+      "word": "year,",
+      "startMs": 30780,
+      "endMs": 31000
+    },
+    {
+      "word": "Lower",
+      "startMs": 31340,
+      "endMs": 31520
+    },
+    {
+      "word": "the",
+      "startMs": 31560,
+      "endMs": 31620
+    },
+    {
+      "word": "target",
+      "startMs": 31700,
+      "endMs": 32000
+    },
+    {
+      "word": "range:",
+      "startMs": 32100,
+      "endMs": 32420
+    },
+    {
+      "word": "expansionary",
+      "startMs": 32500,
+      "endMs": 33240
+    },
+    {
+      "word": "cheer,",
+      "startMs": 33380,
+      "endMs": 33660
+    },
+    {
+      "word": "Raise",
+      "startMs": 33980,
+      "endMs": 34140
+    },
+    {
+      "word": "the",
+      "startMs": 34180,
+      "endMs": 34260
+    },
+    {
+      "word": "target",
+      "startMs": 34340,
+      "endMs": 34640
+    },
+    {
+      "word": "range:",
+      "startMs": 34740,
+      "endMs": 35020
+    },
+    {
+      "word": "contractionary,",
+      "startMs": 35100,
+      "endMs": 35880
+    },
+    {
+      "word": "clear.",
+      "startMs": 36020,
+      "endMs": 36500
+    },
+    {
+      "word": "Dual",
+      "startMs": 43760,
+      "endMs": 44300
+    },
+    {
+      "word": "mandate,",
+      "startMs": 44400,
+      "endMs": 44960
+    },
+    {
+      "word": "sing",
+      "startMs": 45060,
+      "endMs": 45260
+    },
+    {
+      "word": "it",
+      "startMs": 45320,
+      "endMs": 45460
+    },
+    {
+      "word": "loud,",
+      "startMs": 45540,
+      "endMs": 46040
+    },
+    {
+      "word": "Max",
+      "startMs": 46360,
+      "endMs": 46640
+    },
+    {
+      "word": "sustainable",
+      "startMs": 46660,
+      "endMs": 47940
+    },
+    {
+      "word": "employment,",
+      "startMs": 48080,
+      "endMs": 48840
+    },
+    {
+      "word": "Price",
+      "startMs": 48920,
+      "endMs": 49220
+    },
+    {
+      "word": "stability,",
+      "startMs": 49240,
+      "endMs": 50100
+    },
+    {
+      "word": "keep",
+      "startMs": 50260,
+      "endMs": 50480
+    },
+    {
+      "word": "it",
+      "startMs": 50520,
+      "endMs": 50660
+    },
+    {
+      "word": "sound.",
+      "startMs": 50760,
+      "endMs": 51340
+    },
+    {
+      "word": "Price",
+      "startMs": 53500,
+      "endMs": 53720
+    },
+    {
+      "word": "stability:",
+      "startMs": 53720,
+      "endMs": 54380
+    },
+    {
+      "word": "two",
+      "startMs": 54480,
+      "endMs": 54600
+    },
+    {
+      "word": "percent",
+      "startMs": 54680,
+      "endMs": 55060
+    },
+    {
+      "word": "PCE",
+      "startMs": 55140,
+      "endMs": 55760
+    },
+    {
+      "word": "a",
+      "startMs": 55820,
+      "endMs": 55880
+    },
+    {
+      "word": "year,",
+      "startMs": 56020,
+      "endMs": 56400
+    },
+    {
+      "word": "Jobs",
+      "startMs": 56800,
+      "endMs": 57140
+    },
+    {
+      "word": "and",
+      "startMs": 57200,
+      "endMs": 57320
+    },
+    {
+      "word": "prices,",
+      "startMs": 57420,
+      "endMs": 57720
+    },
+    {
+      "word": "keep",
+      "startMs": 57800,
+      "endMs": 57920
+    },
+    {
+      "word": "the",
+      "startMs": 57960,
+      "endMs": 58040
+    },
+    {
+      "word": "mandate",
+      "startMs": 58120,
+      "endMs": 58660
+    },
+    {
+      "word": "near.",
+      "startMs": 58740,
+      "endMs": 59120
+    }
+  ],
+  "styleSource": "descriptors",
+  "model": "music_v2_5",
+  "audioFile": "audio.mp3"
+}

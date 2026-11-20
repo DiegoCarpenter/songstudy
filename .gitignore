@@ -19,5 +19,8 @@ contracts/broadcast/*/31337/
 *.log
 contracts/broadcast/**/*.lock
 
-# generated songs (local dev storage; moves to Vercel Blob at deploy)
-web/public/generated/
+# generated songs (local storage). Everything is ignored except the two seed songs,
+# so a clean clone has demo songs.
+web/public/generated/*
+!web/public/generated/dual-mandate-flow-7d0242/
+!web/public/generated/squared-residuals-down-e49c19/
