@@ -1,9 +1,9 @@
 # SongStudy 🎧
 
-**Turn your study notes into songs you can't get out of your head.**
-Built solo for the University Blockchain Conference 2026 Hackathon (Austin).
+**Turn your study notes into songs you'll actually remember.**
+Built solo for the University Blockchain Conference 2026 Hackathon.
 
-> NotebookLM made your notes into a podcast. SongStudy makes them into a song, and lets your classmates pay you a few cents to study with it.
+SongStudy turns anything into a song, and lets your classmates pay you a few cents to study with it.
 
 | | |
 |---|---|
@@ -14,13 +14,14 @@ Built solo for the University Blockchain Conference 2026 Hackathon (Austin).
 | Demo video | TODO: link (shows the full flow end to end) |
 | SongStudyMarket (Arc testnet) | [`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F) (verified) |
 
-TODO: hero screenshot / GIF of the synced-lyrics player
+<img width="1372" height="733" alt="Screenshot 2026-11-20 at 12 49 50 AM" src="https://github.com/user-attachments/assets/0573ddda-0eae-4bcd-8426-047f3e023f2a" />
+
 
 ---
 
 ## The problem
 
-Re-reading notes is the least effective way to study, and everyone knows songs stick. You still remember jingles from when you were eight.
+I always found droning on and reading straight notes is a terrible way to study, but everyone can remember songs. You still remember jingles from when you were eight.
 But turning a lecture into a song takes musical skill and hours of time. And good study material is trapped in individual notebooks, with no easy way for a student to share it and get paid for it.
 
 ## What SongStudy does
@@ -97,7 +98,7 @@ SongStudy uses the **Eleven Music API** (`@elevenlabs/elevenlabs-js`, model **`m
 Students can type "something like a song I love," but **artist names, song titles and lyrics never reach ElevenLabs**:
 
 - Claude translates the reference into neutral descriptors only (genre and sub-genre, BPM, key and mode, mood, instruments, vocal style). The app shows those descriptors, so the student sees exactly what style was used.
-- As a second guard, any descriptor that echoes a distinctive word from the user's reference (an artist's or song's name) is dropped on the server before the plan is built (`scrubReference` in `web/lib/claude.ts`).
+- As a second guard, any descriptor that echoes a distinctive word from the user's reference (an artist's or song's name) is dropped on the server before the plan is built. 
 - If ElevenLabs still rejects the plan (`bad_prompt` / `bad_composition_plan`), we **retry once with ElevenLabs' own `composition_plan_suggestion`**, and if that fails too, **fall back to the closest preset's style** (chosen by matching genre, instrument and mood words and the nearest BPM). The lyrics stay the same; only the style changes. Each song's `meta.json` records which path was used (`styleSource`).
 
 ## How we use Arc
@@ -197,14 +198,6 @@ forge verify-contract <ADDRESS> src/SongStudyMarket.sol:SongStudyMarket \
 
 Then set `NEXT_PUBLIC_SONGSTUDY_MARKET_ADDRESS` and `NEXT_PUBLIC_SONGSTUDY_MARKET_DEPLOY_BLOCK` in `web/.env.local` to your deployment.
 
-## What's next
-
-- Hosted deployment with cloud storage for songs, so classmates can join from their own devices
-- Email-login wallets (Circle user-controlled wallets) so classmates never see a seed phrase
-- Quiz mode that turns the fact map into flashcards
-- Class spaces: a professor or TA curates the official song pack for an exam
-- Revenue splits for co-authored songs
-
 ## Acknowledgements
 
-Built during UBC 2026 (Nov 18–20). Uses the ElevenLabs and Anthropic SDKs, RainbowKit/wagmi/viem, and Circle's Arc testnet.
+Built during UBC 2026. Uses the ElevenLabs and Anthropic SDKs, RainbowKit/wagmi/viem, and Circle's Arc testnet.
