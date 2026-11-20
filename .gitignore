@@ -18,3 +18,6 @@ contracts/broadcast/*/31337/
 .DS_Store
 *.log
 contracts/broadcast/**/*.lock
+
+# generated songs (local dev storage; moves to Vercel Blob at deploy)
+web/public/generated/

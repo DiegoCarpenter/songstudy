@@ -36,7 +36,7 @@ So: when the user types a reference song, **Claude converts it into neutral desc
 |---|---|
 | App | **Next.js (App Router) + TypeScript + Tailwind + shadcn/ui**, single app in `web/`, deploy to **Vercel** |
 | LLM | `@anthropic-ai/sdk`, model from `ANTHROPIC_MODEL`. Structured JSON output, validated with zod |
-| Music | `@elevenlabs/elevenlabs-js`: `music.compositionPlan.create` → edit lyrics in → `music.compose` (model `music_v2_5` or current; check docs), request word timestamps if available |
+| Music | `@elevenlabs/elevenlabs-js`: we build the `music_v2_5` composition plan (`chunks`: `[Section]\nlines`, `durationMs`, `positiveStyles`) ourselves, then `music.composeDetailed({ compositionPlan, modelId: "music_v2_5", withTimestamps: true })` → `{ audio, json.wordsTimestamps[{word,startMs,endMs}] }`. The SDK types `client.music` as the generated client; at runtime it's the wrapper (cast in `lib/elevenlabs.ts`) |
 | Files | PDF text via `pdf-parse` (server route). Audio + metadata JSON stored in **Vercel Blob** |
 | Chain | **Arc testnet**: chain ID `5042002`, RPC `https://rpc.testnet.arc.network` (alt `https://rpc.testnet.arc.io`), explorer `https://testnet.arcscan.app`, faucet `https://faucet.circle.com` |
 | USDC | ERC-20 at `0x3600000000000000000000000000000000000000`, **6 decimals** (native gas view is 18 decimals; don't mix) |
@@ -78,7 +78,7 @@ Rules for the prompt: lyrics must be **accurate to the notes** (no invented fact
 
 1. Build a composition plan from `descriptors` (global positive styles) + `sections` (one chunk per section with its lines and a duration that sums to `lengthSec`).
 2. Call ElevenLabs compose; get audio bytes (+ word timestamps if supported).
-3. Upload `audio.mp3` and `meta.json` (title, descriptors, sections, factMap, timestamps) to Vercel Blob.
+3. Upload `audio.mp3` and `meta.json` (title, descriptors, sections, factMap, timestamps) to Vercel Blob. (Dev: written to `web/public/generated/<id>/`, gitignored; swap `lib/storage.ts` for Blob at deploy.)
 4. Return `{ id, audioUrl, metaUrl }`.
 Generation takes a while: show a progress UI with stages (Reading notes → Writing lyrics → Composing → Mixing). Cache results; never regenerate on page reload.
 
@@ -104,6 +104,7 @@ Crypto stays in the background: prices shown as "$0.05", wallet connect only whe
 ## Conventions
 
 - TypeScript strict; zod at every API boundary; keys only server-side.
+- Next 16 with `cacheComponents`: don't export `runtime` from routes (build error); Node is the default. Read `web/node_modules/next/dist/docs/` before using Next APIs.
 - Secrets only in `.env.local` (gitignored); keep `.env.example` current. Never print or commit keys.
 - Small commits, push after each milestone.
 - Seed 2–3 demo songs (e.g., an econometrics one) so the demo never waits on generation.
