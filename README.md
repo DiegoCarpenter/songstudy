@@ -12,7 +12,7 @@ Built solo for the University Blockchain Conference 2026 Hackathon (Austin).
 | Bounty | ElevenLabs |
 | Live app | TODO: Vercel URL |
 | Demo video | TODO: link |
-| SongStudyMarket (Arc testnet) | TODO: `0x…` · [arcscan](https://testnet.arcscan.app) |
+| SongStudyMarket (Arc testnet) | [`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F) (verified) |
 
 TODO: hero screenshot / GIF of the synced-lyrics player
 
@@ -62,7 +62,8 @@ TODO: finalize. `SongStudyMarket` is deployed on Arc testnet.
 - **USDC as the price and the gas.** Songs cost $0.05, and fees are dollar-denominated and predictable, so micro-prices make sense.
 - **Publish:** stores the creator, price, metadata URI, and `contentHash = keccak256(audio ‖ lyrics)` as a timestamped proof of authorship.
 - **Unlock:** moves USDC (ERC-20 at `0x3600000000000000000000000000000000000000`) from the listener directly to the creator. No platform fee, no custody.
-- Contract: TODO address
+- Contract (verified source): [`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F)
+- Deploy tx: [`0xf664d75f…def9cc`](https://testnet.arcscan.app/tx/0xf664d75f6732f7079a1adea495ec0a7e3757a191a177dfa07b94184af8def9cc)
 - Example publish tx: TODO
 - Example unlock tx: TODO
 
@@ -73,17 +74,29 @@ Next.js · TypeScript · Tailwind · shadcn/ui · Claude API · ElevenLabs Music
 ## Setup
 
 ```bash
-git clone https://github.com/TODO/songstudy && cd songstudy
+git clone --recursive https://github.com/DiegoCarpenter/songstudy && cd songstudy
 
 # contracts
-cd contracts && forge install && forge test -vv && cd ..
+cd contracts && forge test -vv && cd ..
 
 # web
 cd web && cp ../.env.example .env.local   # fill in keys
 npm install && npm run dev                 # http://localhost:3000
 ```
 
-TODO: deploy command and env vars for Vercel.
+### Deploy the contract (Arc testnet)
+
+```bash
+cd contracts
+printf 'DEPLOYER_PRIVATE_KEY=\nARC_RPC_URL=https://rpc.testnet.arc.network\n' > .env   # add your key; fund it at faucet.circle.com
+set -a && source .env && set +a
+forge script script/Deploy.s.sol --rpc-url arc_testnet --broadcast
+forge verify-contract <ADDRESS> src/SongStudyMarket.sol:SongStudyMarket \
+  --chain 5042002 --verifier blockscout --verifier-url https://explorer.testnet.arc.io/api/ \
+  --constructor-args $(cast abi-encode 'constructor(address)' 0x3600000000000000000000000000000000000000)
+```
+
+TODO: env vars for Vercel.
 
 ## What's next
 

@@ -17,3 +17,4 @@ contracts/broadcast/*/31337/
 # misc
 .DS_Store
 *.log
+contracts/broadcast/**/*.lock
