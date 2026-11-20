@@ -33,40 +33,92 @@ But turning a lecture into a song takes musical skill and hours of time. And goo
 
 ## Architecture
 
-```
-TODO: replace with a final diagram
+```mermaid
+flowchart LR
+  subgraph Browser["Browser · Next.js client"]
+    UI["Create panel<br/>notes · vibe · length"]
+    Player["Player<br/>synced lyrics + fact cards"]
+    Lib["Class library<br/>10s preview · unlock"]
+    Wallet["RainbowKit + wagmi<br/>MetaMask"]
+  end
 
-Notes (text / PDF) ──► /api/extract ──► /api/lyrics (Claude) ──► descriptors + lyrics + fact map
-                                                   │
-                                                   ▼
-                         /api/song: ElevenLabs Music (composition plan + timestamps)
-                                                   │
-                                                   ▼
-             web/public/generated/<id>/ (audio.mp3 + meta.json) ──► Player with synced lyrics
-                                                   │ publish (contentHash, price, metadataURI)
-                                                   ▼
-                              SongStudyMarket.sol on Arc testnet ◄── classmates unlock with USDC
+  subgraph Server["Next.js route handlers · web/app/api"]
+    Extract["/api/extract<br/>pdf-parse"]
+    Lyrics["/api/lyrics<br/>zod-validated JSON"]
+    Song["/api/song<br/>composition plan"]
+  end
+
+  Claude["Claude API<br/>structured output"]
+  Eleven["ElevenLabs Music<br/>music_v2_5 · composeDetailed"]
+  Store[("web/public/generated/{id}/<br/>audio.mp3 + meta.json")]
+
+  subgraph Arc["Arc testnet"]
+    Market["SongStudyMarket.sol"]
+    USDC["USDC ERC-20<br/>0x3600…0000"]
+  end
+
+  UI -->|PDF / .md / .txt| Extract
+  Extract -->|plain text| UI
+  UI -->|notes + vibe + length| Lyrics
+  Lyrics <-->|facts, lyrics, neutral style descriptors| Claude
+  Lyrics -->|title, descriptors, sections, factMap| UI
+  UI -->|descriptors + sections| Song
+  Song <-->|plan → audio + word timestamps| Eleven
+  Song --> Store
+  Store --> Player
+  Store --> Lib
+  Player -->|publish: contentHash, price, metadataURI| Wallet
+  Lib -->|USDC approve, then unlock| Wallet
+  Wallet --> Market
+  Market -->|transferFrom: listener → creator| USDC
+  Market -.->|Published / Unlocked events, hasAccess| Lib
 ```
+
+| Piece | Where |
+|---|---|
+| Notes → text | `web/app/api/extract/route.ts` (pdf-parse for PDFs) |
+| Notes → lyrics, descriptors, fact map | `web/app/api/lyrics/route.ts`, `web/lib/claude.ts` |
+| Lyrics → song | `web/app/api/song/route.ts`, `web/lib/elevenlabs.ts` |
+| Song storage | `web/lib/storage.ts` → `web/public/generated/{id}/` |
+| Synced lyrics | `web/lib/align.ts` (word timestamps → lyric lines) |
+| Contract | `contracts/src/SongStudyMarket.sol` (+ 17 Foundry tests) |
+| Onchain reads / writes | `web/lib/onchain.ts`, `web/app/components/SharePanel.tsx`, `web/app/components/ClassLibrary.tsx` |
 
 ## How we use ElevenLabs
 
-TODO: finalize. SongStudy uses the **Eleven Music API**: a **composition plan** built from Claude's lyrics (one section per verse/chorus, with global and per-section styles), then `compose` to generate the full vocal track, plus word **timestamps** to drive the synced-lyrics player. Music is the product, not an add-on.
+SongStudy uses the **Eleven Music API** (`@elevenlabs/elevenlabs-js`, model **`music_v2_5`**). The song is the product, not an add-on.
+
+1. **We write the composition plan ourselves.** Claude returns the lyrics as sections (Verse 1, Chorus, Verse 2, Bridge, Outro) plus neutral style descriptors. `web/lib/elevenlabs.ts` turns that into a `music_v2_5` composition plan: one chunk per section, with `text` of `[Section]` plus the lyric lines, so ElevenLabs sings our exact words. Each chunk gets a `durationMs`; the song's length (60, 90 or 120 s) is split across sections in proportion to their line counts, and the durations always sum to the target. The first chunk carries the full style list (genre, BPM, key, mood, instruments, vocal style, "clear, intelligible lyrics", "great production quality"). Later chunks keep the core styles plus a section cue such as "big, catchy chorus". All chunks use `contextAdherence: "high"` and negative styles for mumbled vocals and a muddy mix.
+2. **`music.composeDetailed({ compositionPlan, modelId: "music_v2_5", withTimestamps: true })`** returns the MP3 and **word-level timestamps** in one call.
+3. **Synced karaoke lyrics.** `web/lib/align.ts` matches the timestamped words back to our lyric lines in order, so the player knows when each line starts. The current line is shown large and centered, and the fact card for that line lights up. Our test songs synced 18/18 and 16/16 lines.
 
 ### Copyright-safe "sounds like"
 
-Users can name a song they love, but SongStudy never sends artist names, titles, or lyrics to the music model. Claude translates the reference into neutral style descriptors (genre, BPM, key, mood, instruments, vocal style), and the user sees those descriptors before generating. If the model still flags a prompt, SongStudy retries with ElevenLabs' suggested prompt, then falls back to the closest preset.
+Students can type "something like a song I love," but **artist names, song titles and lyrics never reach ElevenLabs**:
+
+- Claude translates the reference into neutral descriptors only (genre and sub-genre, BPM, key and mode, mood, instruments, vocal style). The app shows those descriptors, so the student sees exactly what style was used.
+- As a second guard, any descriptor that echoes a distinctive word from the user's reference (an artist's or song's name) is dropped on the server before the plan is built (`scrubReference` in `web/lib/claude.ts`).
+- If ElevenLabs still rejects the plan (`bad_prompt` / `bad_composition_plan`), we **retry once with ElevenLabs' own `composition_plan_suggestion`**, and if that fails too, **fall back to the closest preset's style** (chosen by matching genre, instrument and mood words and the nearest BPM). The lyrics stay the same; only the style changes. Each song's `meta.json` records which path was used (`styleSource`).
 
 ## How we use Arc
 
-TODO: finalize. `SongStudyMarket` is deployed on Arc testnet.
-- **USDC as the price and the gas.** Songs cost $0.05, and fees are dollar-denominated and predictable, so micro-prices make sense.
-- **Publish:** stores the creator, price, metadata URI, and `contentHash = keccak256(audio bytes ‖ JSON.stringify({ title, sections, factMap }))` as a timestamped proof of authorship. Anyone with the files can recompute it (`web/lib/onchain.ts`).
-- **Unlock:** USDC `approve` then `unlock(id)` moves USDC (ERC-20 at `0x3600000000000000000000000000000000000000`) from the listener directly to the creator. No platform fee, no custody. `hasAccess(id, who)` keeps tracks unlocked across reloads; the creator always has access.
-- **Class library:** built from `Published` events (viem `getLogs`, chunked to Arc's 10k-block limit); earnings come from `Unlocked` + `Tipped` events.
-- Contract (verified source): [`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F)
-- Deploy tx: [`0xf664d75f…def9cc`](https://testnet.arcscan.app/tx/0xf664d75f6732f7079a1adea495ec0a7e3757a191a177dfa07b94184af8def9cc)
-- Example publish tx: TODO
-- Example unlock tx: TODO
+`SongStudyMarket` ([`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F), source verified on arcscan) is the onchain half of SongStudy. It's a small contract with no admin keys, no fees and no custody: USDC moves straight from the listener to the creator.
+
+- **USDC is the price and the gas.** Songs cost $0.00–$0.25, and fees on Arc are paid in USDC too, so students only ever think in dollars. Prices use the USDC ERC-20 at `0x3600000000000000000000000000000000000000` with 6 decimals (Arc's native balance shows the same USDC with 18 decimals; the app never mixes the two).
+- **Publish = proof of authorship.** "Share with your class" computes `contentHash = keccak256(audio bytes ‖ JSON.stringify({ title, sections, factMap }))` in the browser and calls `publish(contentHash, price, metadataURI)`. The contract stores the creator, price, hash, metadata URI and timestamp, and rejects a hash that was already published, so the first publisher is the recorded author. Anyone with the files can recompute the hash (`web/lib/onchain.ts`).
+- **Unlock pays the creator directly.** A classmate approves the exact price in USDC, then calls `unlock(id)`, which does `transferFrom(listener → creator)` and records access. The app shows the steps ("Approving USDC… → Unlocking…") and skips the approval when the allowance already covers it. Free songs skip payment entirely.
+- **`hasAccess(id, who)`** decides what the app shows, so an unlocked song stays unlocked after a reload, and the creator always has access.
+- **Class library and earnings come from events.** The library lists tracks from `Published` events (viem `getLogs`, read in 9,999-block chunks because Arc's RPC rejects larger ranges). A creator's "Earned $X · N unlocks" adds up `Unlocked` (and `Tipped`) events for their track.
+- **Friendly failure states:** wrong network (offers to switch to Arc testnet), not enough USDC for the price or for gas (points to the faucet), and a rejected signature ("Nothing was charged").
+
+**Example transactions (Arc testnet):**
+
+| Step | Transaction |
+|---|---|
+| Deploy `SongStudyMarket` | [`0xf664d75f…def9cc`](https://testnet.arcscan.app/tx/0xf664d75f6732f7079a1adea495ec0a7e3757a191a177dfa07b94184af8def9cc) |
+| Creator publishes *Dual Mandate Flow* (track #0) for $0.05 | [`0x6a5adac8…00af6a`](https://testnet.arcscan.app/tx/0x6a5adac8a262aca6cdd7641da7b4e62f028c507fd20f4f697595deefe500af6a) |
+| Classmate approves $0.05 USDC to the market | [`0xbd85b053…60e2c8`](https://testnet.arcscan.app/tx/0xbd85b053f3bb8b0e1401fe03cc3b5b21629d1fbea0026a36f2b922ba9660e2c8) |
+| Classmate unlocks track #0: $0.05 USDC goes straight to the creator | [`0xdbd309ac…efc4f4a`](https://testnet.arcscan.app/tx/0xdbd309aca798157b1fe0d0ead08235403c6cac4ff629eb85c7be16cd4efc4f4a) |
 
 ## Tech stack
 

@@ -6,7 +6,7 @@
 **Main track:** Consumer Applications
 **Chain award:** Best use of Arc
 **Bounties:** ElevenLabs (opt in)
-**Built with:** ElevenLabs Music API, Claude, Next.js, TypeScript, Tailwind, Vercel, Solidity, Foundry, viem, wagmi, Arc, USDC
+**Built with:** ElevenLabs Music API, Claude, Next.js, TypeScript, Tailwind, Solidity, Foundry, viem, wagmi, RainbowKit, Arc, USDC
 
 ## What did you build?
 SongStudy turns lecture notes or a PDF into an original song. Claude extracts the key facts and writes accurate, singable lyrics; ElevenLabs Music composes the track in the style the student picks; and the app plays it with synced karaoke lyrics plus a map of which fact each line teaches. Students can publish songs to their class on Arc, where classmates unlock them for a few cents of USDC paid directly to the creator.
@@ -15,7 +15,7 @@ SongStudy turns lecture notes or a PDF into an original song. Claude extracts th
 Re-reading notes is a weak way to study, and songs are one of the strongest memory aids we have, but making one takes skill and hours. Good study material is also stuck in individual notebooks with no way for students to share it and get paid.
 
 ## How does it work?
-TODO: 4–5 sentences on extract → lyrics (zod-validated JSON) → ElevenLabs composition plan + timestamps → Vercel Blob → SongStudyMarket on Arc (publish with content hash, unlock pays creator in USDC). Include the contract address.
+A student pastes notes or uploads a PDF/.md/.txt (text is pulled out with pdf-parse), picks a vibe preset or names "something like a song I love," and chooses a length. Claude reads the notes (condensing long ones to key facts first) and returns zod-validated JSON: a title, 5–10 key facts mapped to the exact lyric lines that teach them, verse/chorus lyrics, and neutral style descriptors (genre, BPM, key, mood, instruments, vocals) with no artist names or titles. We turn that into an ElevenLabs `music_v2_5` composition plan, one chunk per section with our exact lyrics and durations that sum to the song's length, and call `composeDetailed` with word timestamps. That gives us the MP3 plus the timing we use for karaoke-style synced lyrics. If ElevenLabs flags the style, we retry once with its own suggested plan, then fall back to the closest preset. Songs are saved locally (`web/public/generated/`), and "Share with your class" publishes `keccak256(audio ‖ lyrics JSON)` and a price to our `SongStudyMarket` contract on Arc testnet (`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`). Classmates find it in the Class library (built from `Published` events), hear a 10-second preview, then approve USDC and call `unlock()`, which pays the creator directly in USDC; `hasAccess()` keeps it unlocked, and gas is paid in USDC too.
 
 ## What makes it unique?
 - Music, not a podcast: the format that actually sticks for memorization.
