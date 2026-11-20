@@ -60,8 +60,9 @@ Users can name a song they love, but SongStudy never sends artist names, titles,
 
 TODO: finalize. `SongStudyMarket` is deployed on Arc testnet.
 - **USDC as the price and the gas.** Songs cost $0.05, and fees are dollar-denominated and predictable, so micro-prices make sense.
-- **Publish:** stores the creator, price, metadata URI, and `contentHash = keccak256(audio ‖ lyrics)` as a timestamped proof of authorship.
-- **Unlock:** moves USDC (ERC-20 at `0x3600000000000000000000000000000000000000`) from the listener directly to the creator. No platform fee, no custody.
+- **Publish:** stores the creator, price, metadata URI, and `contentHash = keccak256(audio bytes ‖ JSON.stringify({ title, sections, factMap }))` as a timestamped proof of authorship. Anyone with the files can recompute it (`web/lib/onchain.ts`).
+- **Unlock:** USDC `approve` then `unlock(id)` moves USDC (ERC-20 at `0x3600000000000000000000000000000000000000`) from the listener directly to the creator. No platform fee, no custody. `hasAccess(id, who)` keeps tracks unlocked across reloads; the creator always has access.
+- **Class library:** built from `Published` events (viem `getLogs`, chunked to Arc's 10k-block limit); earnings come from `Unlocked` + `Tipped` events.
 - Contract (verified source): [`0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F`](https://testnet.arcscan.app/address/0x5F7e6da30480Fc92190d17b3F51C7559c9F04A0F)
 - Deploy tx: [`0xf664d75f…def9cc`](https://testnet.arcscan.app/tx/0xf664d75f6732f7079a1adea495ec0a7e3757a191a177dfa07b94184af8def9cc)
 - Example publish tx: TODO
